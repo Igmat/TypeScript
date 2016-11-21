@@ -13,7 +13,7 @@ interface UsersCollection {
     [gmail: Gmail]: GmailUser;
 }
 
-let collection: UsersCollection;
+let collection: UsersCollection = {};
 let someEmail = 'test@example.com';
 let someGmail = 'test@gmail.com';
 
