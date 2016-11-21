@@ -31,5 +31,19 @@ collection[<Email>someEmail].usersProperty;
 collection[<Email>someEmail].gmailProperty;
 collection[<Gmail>someGmail].usersProperty;
 collection[<Gmail>someGmail].gmailProperty;
-collection[<Email & Gmail> someGmail].usersProperty;
-collection[<Email & Gmail> someGmail].gmailProperty;
+
+if (Email.test(someEmail)) {
+    collection[someEmail].usersProperty;
+    collection[someEmail].gmailProperty;
+}
+if (Gmail.test(someGmail)) {
+    collection[someGmail].usersProperty;
+    collection[someGmail].gmailProperty;
+}
+
+let someEmailLiteral: 'test@example.com' = 'test@example.com';
+let someGmailLiteral: 'test@gmail.com' = 'test@gmail.com';
+collection[someEmailLiteral].usersProperty;
+collection[someEmailLiteral].gmailProperty;
+collection[someGmailLiteral].usersProperty;
+collection[someGmailLiteral].gmailProperty;

@@ -7,9 +7,9 @@ email = 'test@example.com';
 email = 'test@gmail.com';
 gmail = 'test@example.com';
 gmail = 'test@gmail.com';
+
 gmail = email;
 email = gmail;
-
 gmail = <Gmail>email;
 if (Gmail.test(email)) {
     gmail = email;
@@ -18,17 +18,23 @@ if (Gmail.test(email)) {
 let someEmail = 'test@example.com';
 let someGmail = 'test@gmail.com';
 email = someEmail;
+email = someGmail;
+gmail = someEmail;
 gmail = someGmail;
 email = <Email>someEmail;
 gmail = <Gmail>someGmail;
 if (Email.test(someEmail)) {
     email = someEmail;
+    gmail = someEmail;
 }
 if (Gmail.test(someGmail)) {
+    email = someGmail;
     gmail = someGmail;
 }
 
 let someEmailLiteral: 'test@example.com' = 'test@example.com';
 let someGmailLiteral: 'test@gmail.com' = 'test@gmail.com';
 email = someEmailLiteral;
+email = someGmailLiteral;
+gmail = someEmailLiteral;
 gmail = someGmailLiteral;
