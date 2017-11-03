@@ -4,13 +4,13 @@
 ////    /*ctr*/constructor() {}
 ////    x() {}
 ////}
-/////*B*/class B extends A {}
+////class /*B*/B extends A {}
 ////class C extends B {
 ////    constructor() {
-////        /*super*/super();
+////        [|/*super*/super|]();
 ////    }
 ////    method() {
-////        /*superExpression*/super.x();
+////        [|/*superExpression*/super|].x();
 ////    }
 ////}
 ////class D {

@@ -1,4 +1,4 @@
-﻿/// <reference path="..\..\harnessLanguageService.ts" />
+/// <reference path="..\..\harnessLanguageService.ts" />
 
 interface ClassificationEntry {
     value: any;
@@ -13,8 +13,7 @@ describe("Colorization", function () {
 
     function getEntryAtPosition(result: ts.ClassificationResult, position: number) {
         let entryPosition = 0;
-        for (let i = 0, n = result.entries.length; i < n; i++) {
-            const entry = result.entries[i];
+        for (const entry of result.entries) {
             if (entryPosition === position) {
                 return entry;
             }
@@ -31,21 +30,15 @@ describe("Colorization", function () {
     function identifier(text: string, position?: number) { return createClassification(text, ts.TokenClass.Identifier, position); }
     function numberLiteral(text: string, position?: number) { return createClassification(text, ts.TokenClass.NumberLiteral, position); }
     function stringLiteral(text: string, position?: number) { return createClassification(text, ts.TokenClass.StringLiteral, position); }
-    function finalEndOfLineState(value: number): ClassificationEntry { return { value: value, classification: undefined, position: 0 }; }
-    function createClassification(text: string, tokenClass: ts.TokenClass, position?: number): ClassificationEntry {
-        return {
-            value: text,
-            classification: tokenClass,
-            position: position,
-        };
+    function finalEndOfLineState(value: number): ClassificationEntry { return { value, classification: undefined, position: 0 }; }
+    function createClassification(value: string, classification: ts.TokenClass, position?: number): ClassificationEntry {
+        return { value, classification, position };
     }
 
     function testLexicalClassification(text: string, initialEndOfLineState: ts.EndOfLineState, ...expectedEntries: ClassificationEntry[]): void {
         const result = classifier.getClassificationsForLine(text, initialEndOfLineState, /*syntacticClassifierAbsent*/ false);
 
-        for (let i = 0, n = expectedEntries.length; i < n; i++) {
-            const expectedEntry = expectedEntries[i];
-
+        for (const expectedEntry of expectedEntries) {
             if (expectedEntry.classification === undefined) {
                 assert.equal(result.finalLexState, expectedEntry.value, "final endOfLineState does not match expected.");
             }
@@ -352,9 +345,9 @@ describe("Colorization", function () {
             // Adjusts 'pos' by accounting for the length of each portion of the string,
             // but only return the last given string
             function track(...vals: string[]): string {
-                for (let i = 0, n = vals.length; i < n; i++) {
+                for (const val of vals) {
                     pos += lastLength;
-                    lastLength = vals[i].length;
+                    lastLength = val.length;
                 }
                 return ts.lastOrUndefined(vals);
             }
@@ -424,6 +417,50 @@ class D { }\r\n\
                 identifier("C"),
                 punctuation("{"),
                 punctuation("}"),
+                comment("=======\r\nclass D { }\r\n"),
+                comment(">>>>>>> Branch - a"),
+                finalEndOfLineState(ts.EndOfLineState.None));
+
+            testLexicalClassification(
+"class C {\r\n\
+<<<<<<< HEAD\r\n\
+    v = 1;\r\n\
+||||||| merged common ancestors\r\n\
+    v = 3;\r\n\
+=======\r\n\
+    v = 2;\r\n\
+>>>>>>> Branch - a\r\n\
+}",
+                ts.EndOfLineState.None,
+                keyword("class"),
+                identifier("C"),
+                punctuation("{"),
+                comment("<<<<<<< HEAD"),
+                identifier("v"),
+                operator("="),
+                numberLiteral("1"),
+                punctuation(";"),
+                comment("||||||| merged common ancestors\r\n    v = 3;\r\n"),
+                comment("=======\r\n    v = 2;\r\n"),
+                comment(">>>>>>> Branch - a"),
+                punctuation("}"),
+                finalEndOfLineState(ts.EndOfLineState.None));
+
+            testLexicalClassification(
+"<<<<<<< HEAD\r\n\
+class C { }\r\n\
+||||||| merged common ancestors\r\n\
+class E { }\r\n\
+=======\r\n\
+class D { }\r\n\
+>>>>>>> Branch - a\r\n",
+                ts.EndOfLineState.None,
+                comment("<<<<<<< HEAD"),
+                keyword("class"),
+                identifier("C"),
+                punctuation("{"),
+                punctuation("}"),
+                comment("||||||| merged common ancestors\r\nclass E { }\r\n"),
                 comment("=======\r\nclass D { }\r\n"),
                 comment(">>>>>>> Branch - a"),
                 finalEndOfLineState(ts.EndOfLineState.None));

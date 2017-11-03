@@ -4,4 +4,7 @@
 // @noUnusedParameters: true
 //// [|interface I<T> {}|]
 
-verify.codeFixAtPosition("interface I {}");
+verify.codeFix({
+    description: "Remove declaration for: 'T'.",
+    newRangeContent: "interface I {}",
+});

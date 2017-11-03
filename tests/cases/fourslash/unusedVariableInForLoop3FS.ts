@@ -7,4 +7,7 @@
 ////     }
 //// }
 
-verify.codeFixAtPosition("for(var i = 0, k=0; ;i++,k++)");
+verify.codeFix({
+    description: "Remove declaration for: 'j'.",
+    newRangeContent: "for(var i = 0, k=0; ;i++, k++)",
+});

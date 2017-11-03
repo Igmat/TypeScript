@@ -1,5 +1,4 @@
 //// [literalsInComputedProperties1.ts]
-
 let x = {
     1:1,
     [2]:1,
@@ -68,7 +67,7 @@ y[1].toExponential();
 y[2].toExponential();
 y[3].toExponential();
 y[4].toExponential();
-var C = (function () {
+var C = /** @class */ (function () {
     function C() {
     }
     return C;

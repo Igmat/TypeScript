@@ -1,5 +1,4 @@
 //// [declarationEmitExpressionInExtends3.ts]
-
 export class ExportedClass<T> {
 	x: T;
 }
@@ -45,18 +44,24 @@ export class MyClass4 extends getExportedClass<LocalInterface>(undefined)<Export
 
 //// [declarationEmitExpressionInExtends3.js]
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var ExportedClass = (function () {
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+exports.__esModule = true;
+var ExportedClass = /** @class */ (function () {
     function ExportedClass() {
     }
     return ExportedClass;
 }());
 exports.ExportedClass = ExportedClass;
-var LocalClass = (function () {
+var LocalClass = /** @class */ (function () {
     function LocalClass() {
     }
     return LocalClass;
@@ -67,34 +72,34 @@ function getLocalClass(c) {
 function getExportedClass(c) {
     return ExportedClass;
 }
-var MyClass = (function (_super) {
+var MyClass = /** @class */ (function (_super) {
     __extends(MyClass, _super);
     function MyClass() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return MyClass;
 }(getLocalClass(undefined)));
 exports.MyClass = MyClass;
-var MyClass2 = (function (_super) {
+var MyClass2 = /** @class */ (function (_super) {
     __extends(MyClass2, _super);
     function MyClass2() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return MyClass2;
 }(getExportedClass(undefined)));
 exports.MyClass2 = MyClass2;
-var MyClass3 = (function (_super) {
+var MyClass3 = /** @class */ (function (_super) {
     __extends(MyClass3, _super);
     function MyClass3() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return MyClass3;
 }(getExportedClass(undefined)));
 exports.MyClass3 = MyClass3;
-var MyClass4 = (function (_super) {
+var MyClass4 = /** @class */ (function (_super) {
     __extends(MyClass4, _super);
     function MyClass4() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return MyClass4;
 }(getExportedClass(undefined)));

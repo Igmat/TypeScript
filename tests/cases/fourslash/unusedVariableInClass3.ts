@@ -5,4 +5,7 @@
 ////    private X = function() {};
 ////|]}
 
-verify.codeFixAtPosition("");
+verify.codeFix({
+    description: "Remove declaration for: 'X'.",
+    newRangeContent: "\n",
+});

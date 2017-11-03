@@ -295,13 +295,13 @@ verify.completionListContains('f3', 'function f3(a: number): number (+1 overload
 verify.completionListContains('f4', 'function f4(a: number): number (+1 overload)', 'this is signature 4 - with number parameter');
 
 goTo.marker('18');
-verify.completionListContains('i1', 'interface i1', '');
+verify.not.completionListContains('i1', 'interface i1', '');
 verify.completionListContains('i1_i', 'var i1_i: new i1(b: number) => any (+1 overload)', '');
-verify.completionListContains('i2', 'interface i2', '');
+verify.not.completionListContains('i2', 'interface i2', '');
 verify.completionListContains('i2_i', 'var i2_i: new i2(a: string) => any (+1 overload)', '');
-verify.completionListContains('i3', 'interface i3', '');
+verify.not.completionListContains('i3', 'interface i3', '');
 verify.completionListContains('i3_i', 'var i3_i: new i3(a: string) => any (+1 overload)', 'new 1');
-verify.completionListContains('i4', 'interface i4', '');
+verify.not.completionListContains('i4', 'interface i4', '');
 verify.completionListContains('i4_i', 'var i4_i: new i4(a: string) => any (+1 overload)', '');
 
 goTo.marker('19');
@@ -326,10 +326,10 @@ goTo.marker('22q');
 verify.quickInfoAt("22q", "var i1_i: i1(b: string) => number (+1 overload)", "this is signature 2");
 
 goTo.marker('23');
-verify.memberListContains('foo', '(method) i1.foo(a: number): number (+1 overload)', 'foo 1');
-verify.memberListContains('foo2', '(method) i1.foo2(a: number): number (+1 overload)', '');
-verify.memberListContains('foo3', '(method) i1.foo3(a: number): number (+1 overload)', '');
-verify.memberListContains('foo4', '(method) i1.foo4(a: number): number (+1 overload)', 'foo4 1');
+verify.completionListContains('foo', '(method) i1.foo(a: number): number (+1 overload)', 'foo 1');
+verify.completionListContains('foo2', '(method) i1.foo2(a: number): number (+1 overload)', '');
+verify.completionListContains('foo3', '(method) i1.foo3(a: number): number (+1 overload)', '');
+verify.completionListContains('foo4', '(method) i1.foo4(a: number): number (+1 overload)', 'foo4 1');
 
 goTo.marker('24');
 verify.currentSignatureHelpDocCommentIs("foo 1");
@@ -432,11 +432,11 @@ verify.currentParameterHelpArgumentDocCommentIs("");
 verify.quickInfoAt("43q", "var i4_i: i4(b: string) => number (+1 overload)");
 
 goTo.marker('44');
-verify.memberListContains('prop1', '(method) c.prop1(a: number): number (+1 overload)', '');
-verify.memberListContains('prop2', '(method) c.prop2(a: number): number (+1 overload)', 'prop2 1');
-verify.memberListContains('prop3', '(method) c.prop3(a: number): number (+1 overload)', '');
-verify.memberListContains('prop4', '(method) c.prop4(a: number): number (+1 overload)', 'prop4 1');
-verify.memberListContains('prop5', '(method) c.prop5(a: number): number (+1 overload)', 'prop5 1');
+verify.completionListContains('prop1', '(method) c.prop1(a: number): number (+1 overload)', '');
+verify.completionListContains('prop2', '(method) c.prop2(a: number): number (+1 overload)', 'prop2 1');
+verify.completionListContains('prop3', '(method) c.prop3(a: number): number (+1 overload)', '');
+verify.completionListContains('prop4', '(method) c.prop4(a: number): number (+1 overload)', 'prop4 1');
+verify.completionListContains('prop5', '(method) c.prop5(a: number): number (+1 overload)', 'prop5 1');
 
 goTo.marker('45');
 verify.currentSignatureHelpDocCommentIs("");

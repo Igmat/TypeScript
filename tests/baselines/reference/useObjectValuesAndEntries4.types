@@ -1,5 +1,4 @@
 === tests/cases/conformance/es2017/useObjectValuesAndEntries4.ts ===
-
 var o = { a: 1, b: 2 };
 >o : { a: number; b: number; }
 >{ a: 1, b: 2 } : { a: number; b: number; }
@@ -11,9 +10,9 @@ var o = { a: 1, b: 2 };
 for (var x of Object.values(o)) {
 >x : number
 >Object.values(o) : number[]
->Object.values : { <T>(o: { [s: string]: T; }): T[]; (o: any): any[]; }
+>Object.values : { <T>(o: { [s: string]: T; } | { [n: number]: T; }): T[]; (o: any): any[]; }
 >Object : ObjectConstructor
->values : { <T>(o: { [s: string]: T; }): T[]; (o: any): any[]; }
+>values : { <T>(o: { [s: string]: T; } | { [n: number]: T; }): T[]; (o: any): any[]; }
 >o : { a: number; b: number; }
 
     let y = x;
@@ -22,10 +21,10 @@ for (var x of Object.values(o)) {
 }
 
 var entries = Object.entries(o);
->entries : ["a" | "b", number][]
->Object.entries(o) : ["a" | "b", number][]
->Object.entries : { <T extends { [key: string]: any; }, K extends keyof T>(o: T): [keyof T, T[K]][]; (o: any): [string, any][]; }
+>entries : [string, number][]
+>Object.entries(o) : [string, number][]
+>Object.entries : { <T>(o: { [s: string]: T; } | { [n: number]: T; }): [string, T][]; (o: any): [string, any][]; }
 >Object : ObjectConstructor
->entries : { <T extends { [key: string]: any; }, K extends keyof T>(o: T): [keyof T, T[K]][]; (o: any): [string, any][]; }
+>entries : { <T>(o: { [s: string]: T; } | { [n: number]: T; }): [string, T][]; (o: any): [string, any][]; }
 >o : { a: number; b: number; }
 

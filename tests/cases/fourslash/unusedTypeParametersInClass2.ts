@@ -5,4 +5,7 @@
 ////    public a: X;
 ////}
 
-verify.codeFixAtPosition("class greeter<X>");
+verify.codeFix({
+    description: "Remove declaration for: 'Y'.",
+    newRangeContent: "class greeter<X> ",
+});

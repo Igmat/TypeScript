@@ -52,11 +52,16 @@ class RegisteredUser extends User {
 }
 
 //// [superErrors.js]
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 function foo() {
     var _this = this;
     // super in a non class context
@@ -64,7 +69,7 @@ function foo() {
     var y = function () { return _super.; };
     var z = function () { return function () { return function () { return _super.; }; }; };
 }
-var User = (function () {
+var User = /** @class */ (function () {
     function User() {
         this.name = "Bob";
     }
@@ -73,7 +78,7 @@ var User = (function () {
     };
     return User;
 }());
-var RegisteredUser = (function (_super) {
+var RegisteredUser = /** @class */ (function (_super) {
     __extends(RegisteredUser, _super);
     function RegisteredUser() {
         var _this = _super.call(this) || this;

@@ -5,4 +5,8 @@
 ////    y++;
 ////}
 
-verify.codeFixAtPosition("greeter(y)");
+verify.codeFix({
+    description: "Remove declaration for: 'x'.",
+    index: 0,
+    newRangeContent: "greeter(y)",
+});

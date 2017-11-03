@@ -177,13 +177,18 @@ c.explicitProperty = (this, m) => m + this.n;
 
 
 //// [thisTypeInFunctionsNegative.js]
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var _this = this;
-var C = (function () {
+var C = /** @class */ (function () {
     function C() {
     }
     C.prototype.explicitThis = function (m) {
@@ -203,7 +208,7 @@ var C = (function () {
     };
     return C;
 }());
-var D = (function () {
+var D = /** @class */ (function () {
     function D() {
     }
     D.prototype.explicitThis = function (m) {
@@ -285,7 +290,7 @@ c.explicitThis = d.explicitThis;
 c.explicitVoid = d.explicitD;
 c.explicitVoid = d.explicitThis;
 /// class-based polymorphic assignability (with inheritance!) ///
-var Base1 = (function () {
+var Base1 = /** @class */ (function () {
     function Base1() {
     }
     Base1.prototype.polymorphic = function () { return this.x; };
@@ -293,24 +298,24 @@ var Base1 = (function () {
     Base1.explicitStatic = function () { return this.x; };
     return Base1;
 }());
-var Derived1 = (function (_super) {
+var Derived1 = /** @class */ (function (_super) {
     __extends(Derived1, _super);
     function Derived1() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return Derived1;
 }(Base1));
-var Base2 = (function () {
+var Base2 = /** @class */ (function () {
     function Base2() {
     }
     Base2.prototype.polymorphic = function () { return this.y; };
     Base2.prototype.explicit = function () { return this.x; };
     return Base2;
 }());
-var Derived2 = (function (_super) {
+var Derived2 = /** @class */ (function (_super) {
     __extends(Derived2, _super);
     function Derived2() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return Derived2;
 }(Base2));
@@ -326,7 +331,7 @@ function VoidThis() {
 }
 var voidThis = new VoidThis();
 ///// syntax-ish errors /////
-var ThisConstructor = (function () {
+var ThisConstructor = /** @class */ (function () {
     function ThisConstructor(n) {
         this.n = n;
     }
@@ -340,15 +345,13 @@ function modifiers(, C) {
     return this.n;
 }
 function restParam(C) { return this.n; }
-function optional(C) { return this.n; }
+function optional() { return this.n; }
 function decorated(, C) {
     if ( === void 0) {  = this; }
     return this.n;
 }
-function initializer() { }
-new C();
-number;
-{
+function initializer() {
+    if ( === void 0) {  = new C(); }
     return this.n;
 }
 // can't name parameters 'this' in a lambda.

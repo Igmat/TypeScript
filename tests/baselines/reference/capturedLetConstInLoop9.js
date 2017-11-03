@@ -164,7 +164,7 @@ var _loop_1 = function (x) {
     while (1 == 1) {
         _loop_2();
     }
-    var A = (function () {
+    var A = /** @class */ (function () {
         function A() {
         }
         A.prototype.m = function () {
@@ -208,6 +208,7 @@ function foo() {
             }
             (function () { return b; });
             return { value: 100 };
+            var _a;
         };
         for (var _c = 0, _d = []; _c < _d.length; _c++) {
             var b = _d[_c];
@@ -221,6 +222,7 @@ function foo() {
             }
         }
         (function () { return a; });
+        var _b;
     };
     var arguments_1 = arguments, x, z, x1, z1;
     l0: for (var _i = 0, _a = []; _i < _a.length; _i++) {
@@ -238,7 +240,6 @@ function foo() {
     use(z);
     use(x1);
     use(z1);
-    var _b, _a;
 }
 function foo2() {
     for (var _i = 0, _a = []; _i < _a.length; _i++) {
@@ -270,7 +271,7 @@ function foo2() {
         }
     }
 }
-var C = (function () {
+var C = /** @class */ (function () {
     function C(N) {
         this.N = N;
     }

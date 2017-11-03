@@ -7,7 +7,7 @@ declare module JSX {
 }
 declare var React: any;
 
-var p1, p2, p3;
+var p1: any, p2: any, p3: any;
 var spreads1 = <div {...p1}>{p2}</div>;
 var spreads2 = <div {...p1}>{p2}</div>;
 var spreads3 = <div x={p3} {...p1}>{p2}</div>;
@@ -21,9 +21,6 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
         s = arguments[i];
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
             t[p] = s[p];
-        if (typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++)
-                t[p[i]] = s[p[i]];
     }
     return t;
 };

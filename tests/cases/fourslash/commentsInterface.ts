@@ -80,12 +80,12 @@ verify.quickInfos({
 
 goTo.marker('8');
 verify.quickInfoIs("(property) i2.x: number", "this is x");
-verify.memberListContains("x", "(property) i2.x: number", "this is x");
-verify.memberListContains("foo", "(property) i2.foo: (b: number) => string", "this is foo");
-verify.memberListContains("nc_x", "(property) i2.nc_x: number", "");
-verify.memberListContains("nc_foo", "(property) i2.nc_foo: (b: number) => string", "");
-verify.memberListContains("fnfoo", "(method) i2.fnfoo(b: number): string", "this is fnfoo");
-verify.memberListContains("nc_fnfoo", "(method) i2.nc_fnfoo(b: number): string", "");
+verify.completionListContains("x", "(property) i2.x: number", "this is x");
+verify.completionListContains("foo", "(property) i2.foo: (b: number) => string", "this is foo");
+verify.completionListContains("nc_x", "(property) i2.nc_x: number", "");
+verify.completionListContains("nc_foo", "(property) i2.nc_foo: (b: number) => string", "");
+verify.completionListContains("fnfoo", "(method) i2.fnfoo(b: number): string", "this is fnfoo");
+verify.completionListContains("nc_fnfoo", "(method) i2.nc_fnfoo(b: number): string", "");
 
 verify.quickInfos({
     9: "var i2_i_foo: (b: number) => string",
@@ -163,11 +163,11 @@ verify.currentParameterHelpArgumentDocCommentIs("");
 verify.quickInfoAt("33q", "(method) i2.nc_fnfoo(b: number): string");
 
 goTo.marker('34');
-verify.completionListContains("i1", "interface i1", "this is interface 1");
+verify.not.completionListContains("i1", "interface i1", "this is interface 1");
 verify.completionListContains("i1_i", "var i1_i: i1", "");
-verify.completionListContains("nc_i1", "interface nc_i1", "");
+verify.not.completionListContains("nc_i1", "interface nc_i1", "");
 verify.completionListContains("nc_i1_i", "var nc_i1_i: nc_i1", "");
-verify.completionListContains("i2", "interface i2", "this is interface 2 with memebers");
+verify.not.completionListContains("i2", "interface i2", "this is interface 2 with memebers");
 verify.completionListContains("i2_i", "var i2_i: i2", "");
 verify.completionListContains("i2_i_x", "var i2_i_x: number", "");
 verify.completionListContains("i2_i_foo", "var i2_i_foo: (b: number) => string", "");
@@ -194,17 +194,17 @@ verify.completionListContains("a", "(parameter) a: number", "i3_i a");
 
 verify.quickInfoAt("40q", "var i3_i: i3");
 goTo.marker('40');
-verify.completionListContains("i3", "interface i3", "");
+verify.not.completionListContains("i3", "interface i3", "");
 verify.completionListContains("i3_i", "var i3_i: i3", "");
 
 goTo.marker('41');
 verify.quickInfoIs("(method) i3.f(a: number): string", "Function i3 f");
-verify.memberListContains("f", "(method) i3.f(a: number): string", "Function i3 f");
-verify.memberListContains("l", "(property) i3.l: (b: number) => string", "");
-verify.memberListContains("x", "(property) i3.x: number", "Comment i3 x");
-verify.memberListContains("nc_f", "(method) i3.nc_f(a: number): string", "");
-verify.memberListContains("nc_l", "(property) i3.nc_l: (b: number) => string", "");
-verify.memberListContains("nc_x", "(property) i3.nc_x: number", "");
+verify.completionListContains("f", "(method) i3.f(a: number): string", "Function i3 f");
+verify.completionListContains("l", "(property) i3.l: (b: number) => string", "");
+verify.completionListContains("x", "(property) i3.x: number", "Comment i3 x");
+verify.completionListContains("nc_f", "(method) i3.nc_f(a: number): string", "");
+verify.completionListContains("nc_l", "(property) i3.nc_l: (b: number) => string", "");
+verify.completionListContains("nc_x", "(property) i3.nc_x: number", "");
 
 goTo.marker('42');
 verify.currentSignatureHelpDocCommentIs("Function i3 f");

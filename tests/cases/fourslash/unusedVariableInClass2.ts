@@ -6,4 +6,7 @@
 ////    private greeting: string;|]
 ////}
 
-verify.codeFixAtPosition("public greeting1;");
+verify.codeFix({
+    description: "Remove declaration for: 'greeting'.",
+    newRangeContent: "public greeting1;\n",
+});

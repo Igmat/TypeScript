@@ -92,13 +92,13 @@ var f4 = function (x, y) {
 var f5 = function () {
     var rest = [];
     for (var _i = 0; _i < arguments.length; _i++) {
-        rest[_i - 0] = arguments[_i];
+        rest[_i] = arguments[_i];
     }
 };
 var f6 = function () {
     var rest = [];
     for (var _i = 0; _i < arguments.length; _i++) {
-        rest[_i - 0] = arguments[_i];
+        rest[_i] = arguments[_i];
     }
 };
 var f7 = function (x, y, z) {
@@ -131,7 +131,7 @@ foo(function () { return true; });
 foo(function () { return false; });
 var m;
 (function (m) {
-    var City = (function () {
+    var City = /** @class */ (function () {
         function City(x, thing) {
             if (thing === void 0) { thing = function () { return 100; }; }
             this.m = function () { return 2 * 2 * 2; };

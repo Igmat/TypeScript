@@ -20,10 +20,10 @@
 ////typeof C.k./*6*/caller === 'function';
 ////l./*7*/prototype = Object.prototype;
 
-verify.numberOfErrorsInCurrentFile(0);
+verify.noErrors();
 for (var i = 1; i <= 7; i++) {
     goTo.marker('' + i);
-    verify.memberListCount(8);
+    verify.completionListCount(8);
     verify.completionListContains('apply');
     verify.completionListContains('arguments');
     verify.completionListContains('bind');

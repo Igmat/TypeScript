@@ -1,19 +1,12 @@
 {
+    "extends": "../tsconfig-base",
     "compilerOptions": {
-        "noImplicitAny": true,
-        "noImplicitThis": true,
         "removeComments": true,
-        "preserveConstEnums": true,
-        "pretty": true,
         "outFile": "../../built/local/tsserver.js",
-        "sourceMap": true,
-        "stripInternal": true,
+        "preserveConstEnums": true,
         "types": [
             "node"
-        ],
-        "target": "es5",
-        "noUnusedLocals": true,
-        "noUnusedParameters": true
+        ]
     },
     "files": [
         "../services/shims.ts",
@@ -22,7 +15,6 @@
         "utilities.ts",
         "scriptVersionCache.ts",
         "scriptInfo.ts",
-        "lsHost.ts",
         "typingsCache.ts",
         "project.ts",
         "editorServices.ts",

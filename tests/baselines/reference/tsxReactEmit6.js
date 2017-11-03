@@ -1,7 +1,6 @@
 //// [tests/cases/conformance/jsx/tsxReactEmit6.tsx] ////
 
 //// [file.tsx]
-
 declare module JSX {
 	interface Element { }
 	interface IntrinsicElements {
@@ -17,7 +16,7 @@ namespace M {
 namespace M {
 	// Should emit M.React.createElement
 	//  and M.React.__spread
-	var foo;
+	var foo: any;
 	var spread1 = <div x='' {...foo} y='' />;
 
 	// Quotes
@@ -33,9 +32,6 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
         s = arguments[i];
         for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
             t[p] = s[p];
-        if (typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++)
-                t[p[i]] = s[p[i]];
     }
     return t;
 };

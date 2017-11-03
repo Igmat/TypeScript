@@ -2,7 +2,11 @@
 
 // @noUnusedParameters: true
 ////function [|greeter(x,y)|] {
-////    x++;
+////    use(x);
 ////}
 
-verify.codeFixAtPosition("greeter(x)");
+verify.codeFix({
+    description: "Remove declaration for: 'y'.",
+    index: 0,
+    newRangeContent: "greeter(x)",
+});

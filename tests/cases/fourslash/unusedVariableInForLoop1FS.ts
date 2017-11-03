@@ -7,5 +7,7 @@
 ////     }
 //// }
 
-verify.codeFixAtPosition("for(; ;)");
-
+verify.codeFix({
+    description: "Remove declaration for: 'i'.",
+    newRangeContent: "for(; ;) ",
+});

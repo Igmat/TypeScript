@@ -52,11 +52,16 @@ if((numOrStr === undefined) as numOrStr is string) { // Error
 
 
 //// [typeAssertions.js]
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // Function call whose argument is a 1 arg generic function call with explicit type arguments
 function fn1(t) { }
 function fn2(t) { }
@@ -66,19 +71,19 @@ var s;
 // Type assertion of non - unary expression
 var a = "" + 4;
 var s = "" + 4;
-var SomeBase = (function () {
+var SomeBase = /** @class */ (function () {
     function SomeBase() {
     }
     return SomeBase;
 }());
-var SomeDerived = (function (_super) {
+var SomeDerived = /** @class */ (function (_super) {
     __extends(SomeDerived, _super);
     function SomeDerived() {
-        return _super.apply(this, arguments) || this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return SomeDerived;
 }(SomeBase));
-var SomeOther = (function () {
+var SomeOther = /** @class */ (function () {
     function SomeOther() {
     }
     return SomeOther;
